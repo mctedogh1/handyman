@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% load humanize %} {% block pageContent %}
+
+
+
+<section class="text-center">
+    <h4 class="mb-5"><strong>Tema Handy Men Work Station</strong</h4><hr> 
+	<h6>Do you have a handy man need in Tema? We have a handy man solution just for you! <br>
+	choose your community to find contacts of handy men such as<br>Carpenters, Masons, Plumbers, Electricians, Painters, Tilers,<br> Sewage-Specialists & Cable-Tv-Installers<br> Within your community</h6>
+	<strong><hr></strong><hr>
+	<h6>All Handy Men<p><h6>
+
+<!-- Add other category options here -->
+
+
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow border">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="{% if post.banner %}{{ post.banner.url }}{% else %}{{ MEDIA_URL}}/media/default/python-django.png{% endif %}" class="img-fluid post-banner bg-gradient bg-dark" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    
+                    <h5 class="card-title">{{ post.author }} <br> {{ post.category  }}</h5>
+					<hr>
+                    
+                    <a href="{% url 'view-post' post.id %}" class="btn btn-primary">Read</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+    {% if not posts %}
+    <center>No Bogs has been posted yet</center>
+    {% endif %}
+
+</section>
+
+
+</div>{% endblock pageContent %}

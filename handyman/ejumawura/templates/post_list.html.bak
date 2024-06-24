@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% load humanize %} {% block pageContent %}
+
+
+<h2>Posts in {{ community.name }} under {{ category.name }}</h2>
+<ul>
+{% for post in posts %}
+<li>{{ post.first_name }} - {{ post.category.name }} - {{ post.community.name }}</li>
+{% endfor %}
+</ul>
+
+
+{% endblock pageContent %}
