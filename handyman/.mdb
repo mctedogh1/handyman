@@ -1,0 +1,10 @@
+{
+  "projectName": "handymanjob",
+  "meta": {
+    "type": "backend"
+  },
+  "backend": {
+    "platform": "python3.10"
+  },
+  "hash": "49ec5a6d"
+}

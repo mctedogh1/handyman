@@ -1,0 +1,10 @@
+{
+  "projectName": "ejumawura",
+  "meta": {
+    "type": "backend"
+  },
+  "backend": {
+    "platform": "python3.10"
+  },
+  "hash": "88d729e1"
+}

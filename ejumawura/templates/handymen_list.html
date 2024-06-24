@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% load humanize %} {% block pageContent %}
+
+
+<div class="row">
+        {% for post in posts %}
+
+<center><h4 class="mb-5"><strong>Good Luck!</strong></h4></center>
+
+    
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow border">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="{% if post.banner %}{{ post.banner.url }}{% else %}{{ MEDIA_URL}}/media/default/python-django.png{% endif %}" class="img-fluid post-banner bg-gradient bg-dark" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+				
+                <div class="card-body">
+                    <center>
+                    <h5 class="card-title">{{ post.author }}<br> {{ post.category }}</h5>
+					
+                    
+                    <a href="{% url 'view-post' post.id %}" class="btn btn-primary">Read</a>
+					</center>
+					
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+		
+
+
+    </div>
+    {% if not posts %}
+    <center>We are yet to receive post from {{ community.id  }}</center>
+    {% endif %}
+
+</section>
+
+
+</div>{% endblock pageContent %}

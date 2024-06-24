@@ -1,0 +1,16 @@
+<!-- posts_by_community_category.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Posts in {{ community.name }} - </h1>
+<div class="posts-list">
+{% for post in posts %}
+<div class="post">
+<h2>{{ post.first_name }}</h2>
+<!-- Add other post details you want to display -->
+</div>
+{% empty %}
+<p>No posts found in this category.</p>
+{% endfor %}
+</div>
+{% endblock %}

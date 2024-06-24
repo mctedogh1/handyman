@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% load humanize %} {% block pageContent %}
+
+
+<section class="text-center">
+    <h4 class="mb-5"><strong>Choose Your community</strong</h4> 
+	<br> 
+	
+
+<!-- Add other category options here -->
+
+
+    
+	<div class="row">
+		<div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow border">
+
+				<div class="card-body">
+				
+					{% for community in communities %}
+					
+					
+					<h5 class="card-title"><a href="{% url 'community_handymen' community.id %}"><hr>{{ community.name  }}</a></h5>
+				
+					{% endfor %}
+				</div>
+
+				</div>
+			</div>
+	</div>		
+</section>
+			
+{% endblock pageContent %}
