@@ -170,12 +170,12 @@
             $('#confirm_modal .modal-body').html($msg)
             $('#confirm_modal').modal('show')
         }
-        $(function() {
-$('.navbar-toggler').click(function(){
-$('#navbarExample01').collapse('toggle');
-});
-        })
-		
+$(function() {
+	$('.navbar-toggler').click(function(){
+	$('#navbarExample01').collapse('toggle');
+	});
+			})
+			
 		
     </script>
 

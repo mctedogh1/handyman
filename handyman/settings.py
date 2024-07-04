@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,13 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-default-secret-key')
-
+SECRET_KEY = "django-insecure-b@2c1s4*#icdl1v-is#@*db+4i91y2)90!u^qyz9qg++qgckgt"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['https://mctedogh1.github.io/handyman/']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,13 +40,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'ejumawura.apps.EjumawuraConfig',
     'django.contrib.humanize',
+    "whitenoise.runserver_nostatic",
 ]
 
 MIDDLEWARE = [
 
-    
-    
-   
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -56,7 +53,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-  
 ]
 
 ROOT_URLCONF = "handyman.urls"
@@ -83,9 +79,12 @@ WSGI_APPLICATION = "handyman.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-
 DATABASES = {
-'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+      "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 
 
@@ -125,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = (
     # location of your application, should not be public web accessible 
     './static',
@@ -137,49 +136,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
 
-
-
-# Security settings
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_SECONDS = 31536000  # 1 year
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-
-
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-    'verbose': {
-    'format': '{levelname} {asctime} {module} {message}',
-    'style': '{',
-    },
-    'simple': {
-    'format': '{levelname} {message}',
-    'style': '{',
-    },
-    },
-    'handlers': {
-    'file': {
-    'level': 'DEBUG',
-    'class': 'logging.FileHandler',
-    'filename': '/path/to/your/logs/django.log',
-    'formatter': 'verbose',
-    },
-    'console': {
-    'level': 'INFO',
-    'class': 'logging.StreamHandler',
-    'formatter': 'simple',
-    },
-    },
-    'loggers': {
-    'django': {
-    'handlers': ['file', 'console'],
-    'level': 'INFO',
-    'propagate': True,
-    },
-    },
-}
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
